@@ -15,6 +15,6 @@ public class MaxHeap
     {
         _backingList.Add(value);
 
-        return 1;
+        return this;
     }
 }
