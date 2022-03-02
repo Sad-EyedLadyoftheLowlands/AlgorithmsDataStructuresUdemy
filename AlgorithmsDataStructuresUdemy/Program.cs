@@ -9,6 +9,8 @@ var bst1 = new BinarySearchTree();
 var bst2 = new BinarySearchTree();
 var random = new Random();
 
+bst2.InsertIterative(50);
+
 for (int i = 0; i < 100; i++)
 {
     var next = random.Next(0, 100);
@@ -18,5 +20,5 @@ for (int i = 0; i < 100; i++)
     // Console.WriteLine(bst1.FindIterative(next));
 }
 
-var f = bst2.FindIterative(101);
-var x = bst1;
+var x = bst2.DepthFirstSearchPreOrder();
+var y = 5;

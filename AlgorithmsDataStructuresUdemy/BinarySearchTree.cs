@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
+﻿using System.Collections.Generic;
 
 namespace AlgorithmsDataStructuresUdemy;
 
@@ -12,6 +11,100 @@ public class BinarySearchTree
         Root = null;
     }
 
+    public List<int> BreadthFirstSearch()
+    {
+        var queue = new Queue<BinarySearchTreeNode>();
+        var data = new List<int>();
+
+        queue.Enqueue(Root);
+        
+        while (queue.Count > 0)
+        {
+            var currentNode = queue.Dequeue();
+            data.Add(currentNode.Value);
+            if (currentNode.Left is not null)
+                queue.Enqueue(currentNode.Left);
+            
+            if (currentNode.Right is not null)
+                queue.Enqueue(currentNode.Right);
+        }
+
+        return data;
+    }
+
+    public List<int> DepthFirstSearchPreOrder()
+    {
+        var data = new List<int>();
+        var currentNode = Root;
+
+        return Traverse(currentNode, data);
+
+        List<int> Traverse(BinarySearchTreeNode node, List<int> data)
+        {
+            data.Add(node.Value);
+
+            if (node.Left is not null)
+            {
+                Traverse(node.Left, data);
+            }
+            if (node.Right is not null)
+            {
+                Traverse(node.Right, data);
+            }
+
+            return data;
+        } 
+    }
+
+    public List<int> DepthFirstSearchPostOrder()
+    {
+        var data = new List<int>();
+        var currentNode = Root;
+
+        return Traverse(currentNode, data);
+
+        List<int> Traverse(BinarySearchTreeNode node, List<int> data)
+        {
+            if (node.Left is not null)
+            {
+                Traverse(node.Left, data);
+            }
+            if (node.Right is not null)
+            {
+                Traverse(node.Right, data);
+            }
+
+            data.Add(node.Value);
+
+            return data;
+        }
+    }
+
+    public List<int> DepthFirstSearchInOrder()
+    {
+        var data = new List<int>();
+        var currentNode = Root;
+
+        return Traverse(currentNode, data);
+
+        List<int> Traverse(BinarySearchTreeNode node, List<int> data)
+        {
+            if (node.Left is not null)
+            {
+                Traverse(node.Left, data);
+            }
+
+            data.Add(node.Value);
+
+            if (node.Right is not null)
+            {
+                Traverse(node.Right, data);
+            }
+
+            return data;
+        }
+    }
+    
     public BinarySearchTree InsertRecursive(int value, BinarySearchTreeNode currentNode = null)
     {
         if (Root is null)
